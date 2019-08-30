@@ -1,0 +1,362 @@
+---
+openapi: "3.0.0"
+info:
+  version: "{{api-domain.info.version}}"
+  title: "{{api-domain.info.functionalDomain}}"
+  description: "{{api-domain.info.description}}"
+  contact:
+    name: "{{api-domain.info.contact.name}}"
+    url: "{{api-domain.info.contact.url}}"
+    email: "{{api-domain.info.contact.email}}"
+paths:
+{{#each api-domain.entities}}
+{{#if operations.list}}
+  /{{operations.list.plural-name}}:
+    get:
+      summary: "{{operations.list.summary}}"
+      operationId: "get{{operations.list.plural-name}}List"
+  {{#if operations.list.traits}}
+      parameters:
+    {{#ifIn 'isSearchable' operations.list.traits}}
+        - name: q
+          in: query
+          description: the query object may contain the query filters applied to the collection resource
+          required: false
+          schema:
+            type: string
+    {{/ifIn}}
+    {{#ifIn 'isPageable' operations.list.traits}}
+        - name: offset
+          in: query
+          description: When listing, this is the starting row
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+    {{/ifIn}}
+  {{/if}}
+      x-zally-ignore: [151]
+      responses:
+        '200':
+          description: A paged array of {{@key}}
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/{{@key}}s"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+  {{#if operations.create}}
+    post:
+      summary: "Creates a {{@key}}"
+      operationId: "create{{@key}}"
+      requestBody:
+          content: 
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/{{@key}}"
+          description: the element object to be created
+          required: true
+      responses:
+        '201':
+          description: Ok. Element created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/{{@key}}"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+  {{/if}}
+  {{#if operations.get}}
+  /{{operations.list.plural-name}}/{id}:
+    get:
+      summary: "Gets a {{@key}}"
+      operationId: "get{{@key}}"
+      parameters:
+        - name: id
+          in: path
+          description: the id of the required element
+          required: true
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: the query object may contain the query filters applied to the collection resource
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: When listing, this is the starting row
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          schema:
+            type: integer
+            format: int32
+      x-zally-ignore: [151]
+      responses:
+        '200':
+          description: Gets a {{@key}}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/{{@key}}"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    {{#if operations.update}}
+    put:
+      summary: "Updates a {{@key}}"
+      operationId: "update{{@key}}"
+      requestBody:
+          content: 
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/TodoItem"
+          description: the element object to be updated
+          required: true
+      parameters:
+        - name: id
+          in: path
+          description: the id of the required element
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ok. Element updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/{{@key}}"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    {{/if}}
+    {{#if operations.delete}}
+    delete:
+      summary: "Deletes a {{@key}}"
+      operationId: "delete{{@key}}"
+      parameters:
+        - name: id
+          in: path
+          description: the id of the element to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ok. Element deleted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/{{@key}}"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    {{/if}}
+  {{/if}}
+{{^}}
+  /{{@key}}:
+    get:
+      summary: "Gets a {{@key}}"
+      operationId: "get{{@key}}"
+      parameters:
+        - name: q
+          in: query
+          description: the query object may contain the query filters applied to the collection resource
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: When listing, this is the starting row
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          schema:
+            type: integer
+            format: int32
+      x-zally-ignore: [151]
+      responses:
+        '200':
+          description: Gets a {{@key}}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/{{@key}}"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    {{#if operations.update}}
+    put:
+      summary: "Updates a {{@key}}"
+      operationId: "update{{@key}}"
+      requestBody:
+          content: 
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/TodoItem"
+          description: the element object to be updated
+          required: true
+      responses:
+        '200':
+          description: Ok. Element updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/{{@key}}"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    {{/if}}
+    {{#if operations.delete}}
+    delete:
+      summary: "Deletes a {{@key}}"
+      operationId: "delete{{@key}}"
+      responses:
+        '200':
+          description: Ok. Element deleted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/{{@key}}"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    {{/if}}
+{{/if}}
+{{/each}}
+components:
+  schemas:
+{{#each api-domain.entities}}
+    {{@key}}:
+      type: object
+      required:
+  {{#each properties}}
+    {{#if required}}
+        - {{@key}}
+    {{/if}}
+  {{/each}}
+      properties:
+  {{#each properties}}
+        {{@key}}:
+    {{#each this}}
+      {{#ifNotEq @key "required"}}
+          {{@key}}: {{this}}
+      {{/ifNotEq}}
+    {{/each}}
+  {{/each}}
+  {{#if operations.list}}
+    {{@key}}s:
+      type: object
+      properties:
+        self:
+          description: Pagination link pointing to the current page.
+          type: string
+          format: uri
+        first:
+          description: Pagination link pointing to the first page.
+          type: string
+          format: uri
+        prev:
+          description: Pagination link pointing to the previous page.
+          type: string
+          format: uri
+        next:
+          description: Pagination link pointing to the next page.
+          type: string
+          format: uri
+        last:
+          description: Pagination link pointing to the last page.
+          type: string
+          format: uri
+        query:
+          description: >
+            Object containing the query filters applied to the collection resource.
+          type: string
+        items:
+          description: Array of collection items.
+          type: array
+          items:
+            $ref: "#/components/schemas/{{@key}}"
+  {{/if}}
+
+{{/each}}
+    Problem:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: |
+            An absolute URI that identifies the problem type.  When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          default: 'about:blank'
+          example: 'https://zalando.github.io/problem/constraint-violation'
+        title:
+          type: string
+          description: |
+            A short, summary of the problem type. Written in english and readable
+            for engineers (usually not suited for non technical stakeholders and
+            not localized); example: Service Unavailable
+        status:
+          type: integer
+          format: int32
+          description: |
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          minimum: 100
+          maximum: 600
+          exclusiveMaximum: true
+          example: 503
+        detail:
+          type: string
+          description: |
+            A human readable explanation specific to this occurrence of the
+            problem.
+          example: Connection to database timed out
+        instance:
+          type: string
+          format: uri
+          description: |
+            An absolute URI that identifies the specific occurrence of the problem.
+            It may or may not yield further information if dereferenced.

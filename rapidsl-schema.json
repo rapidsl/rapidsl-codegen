@@ -1,0 +1,870 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "rapid-spec",
+    "api-domain"
+  ],
+  "properties": {
+    "rapid-spec": {
+      "$id": "#/properties/rapid-spec",
+      "type": "string",
+      "title": "The Rapid-spec Schema",
+      "default": "",
+      "examples": [
+        "0.1.0"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "api-domain": {
+      "$id": "#/properties/api-domain",
+      "type": "object",
+      "title": "The Api-domain Schema",
+      "required": [
+        "entities",
+        "info"
+      ],
+      "properties": {
+        "entities": {
+          "$id": "#/properties/api-domain/properties/entities",
+          "type": "object",
+          "title": "The Entities Schema",
+          "properties": {
+            "TodoItem": {
+              "$id": "#/properties/api-domain/properties/entities/properties/TodoItem",
+              "type": "object",
+              "title": "The Todoitem Schema",
+              "required": [
+                "operations",
+                "properties"
+              ],
+              "properties": {
+                "operations": {
+                  "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations",
+                  "type": "object",
+                  "title": "The Operations Schema",
+                  "required": [
+                    "create",
+                    "get",
+                    "list",
+                    "update"
+                  ],
+                  "properties": {
+                    "create": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/create",
+                      "type": "object",
+                      "title": "The Create Schema",
+                      "required": [
+                        "description",
+                        "summary"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/create/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "create a todo item"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "summary": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/create/properties/summary",
+                          "type": "string",
+                          "title": "The Summary Schema",
+                          "default": "",
+                          "examples": [
+                            "create a todo item"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    },
+                    "get": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/get",
+                      "type": "object",
+                      "title": "The Get Schema",
+                      "required": [
+                        "description",
+                        "summary"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/get/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "gets a todo item"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "summary": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/get/properties/summary",
+                          "type": "string",
+                          "title": "The Summary Schema",
+                          "default": "",
+                          "examples": [
+                            "gets a todo item"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    },
+                    "list": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/list",
+                      "type": "object",
+                      "title": "The List Schema",
+                      "required": [
+                        "description",
+                        "plural-name",
+                        "summary",
+                        "traits"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/list/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "lists the registered todo items"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "plural-name": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/list/properties/plural-name",
+                          "type": "string",
+                          "title": "The Plural-name Schema",
+                          "default": "",
+                          "examples": [
+                            "todoitems"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "summary": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/list/properties/summary",
+                          "type": "string",
+                          "title": "The Summary Schema",
+                          "default": "",
+                          "examples": [
+                            "lists the registered todo items"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "traits": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/list/properties/traits",
+                          "type": "array",
+                          "title": "The Traits Schema",
+                          "items": {
+                            "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/list/properties/traits/items",
+                            "type": "string",
+                            "title": "The Items Schema",
+                            "default": "",
+                            "examples": [
+                              "isSearchable",
+                              "isPageable"
+                            ],
+                            "pattern": "^(.*)$"
+                          }
+                        }
+                      }
+                    },
+                    "update": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/update",
+                      "type": "object",
+                      "title": "The Update Schema",
+                      "required": [
+                        "description",
+                        "summary"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/update/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "updates a todo item"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "summary": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/operations/properties/update/properties/summary",
+                          "type": "string",
+                          "title": "The Summary Schema",
+                          "default": "",
+                          "examples": [
+                            "updates a todo item"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    }
+                  }
+                },
+                "properties": {
+                  "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties",
+                  "type": "object",
+                  "title": "The Properties Schema",
+                  "required": [
+                    "done",
+                    "id",
+                    "text",
+                    "timestamp"
+                  ],
+                  "properties": {
+                    "done": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/done",
+                      "type": "object",
+                      "title": "The Done Schema",
+                      "required": [
+                        "description",
+                        "type"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/done/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "if the item has been finished"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "type": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/done/properties/type",
+                          "type": "string",
+                          "title": "The Type Schema",
+                          "default": "",
+                          "examples": [
+                            "boolean"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    },
+                    "id": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/id",
+                      "type": "object",
+                      "title": "The Id Schema",
+                      "required": [
+                        "description",
+                        "type",
+                        "required"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/id/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "the id the this todo item"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "type": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/id/properties/type",
+                          "type": "string",
+                          "title": "The Type Schema",
+                          "default": "",
+                          "examples": [
+                            "string"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "required": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/id/properties/required",
+                          "type": "boolean",
+                          "title": "The Required Schema",
+                          "default": false,
+                          "examples": [
+                            true
+                          ]
+                        }
+                      }
+                    },
+                    "text": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/text",
+                      "type": "object",
+                      "title": "The Text Schema",
+                      "required": [
+                        "description",
+                        "maxLength",
+                        "type",
+                        "required"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/text/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "the content of the todo item"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "maxLength": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/text/properties/maxLength",
+                          "type": "integer",
+                          "title": "The Maxlength Schema",
+                          "default": 0,
+                          "examples": [
+                            140
+                          ]
+                        },
+                        "type": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/text/properties/type",
+                          "type": "string",
+                          "title": "The Type Schema",
+                          "default": "",
+                          "examples": [
+                            "string"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "required": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/text/properties/required",
+                          "type": "boolean",
+                          "title": "The Required Schema",
+                          "default": false,
+                          "examples": [
+                            true
+                          ]
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/timestamp",
+                      "type": "object",
+                      "title": "The Timestamp Schema",
+                      "required": [
+                        "description",
+                        "format",
+                        "type"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/timestamp/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "when the item was created/updated"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "format": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/timestamp/properties/format",
+                          "type": "string",
+                          "title": "The Format Schema",
+                          "default": "",
+                          "examples": [
+                            "date-time"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "type": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/TodoItem/properties/properties/properties/timestamp/properties/type",
+                          "type": "string",
+                          "title": "The Type Schema",
+                          "default": "",
+                          "examples": [
+                            "string"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "MyAccount": {
+              "$id": "#/properties/api-domain/properties/entities/properties/MyAccount",
+              "type": "object",
+              "title": "The Myaccount Schema",
+              "required": [
+                "operations",
+                "properties"
+              ],
+              "properties": {
+                "operations": {
+                  "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/operations",
+                  "type": "object",
+                  "title": "The Operations Schema",
+                  "required": [
+                    "get",
+                    "update"
+                  ],
+                  "properties": {
+                    "get": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/operations/properties/get",
+                      "type": "object",
+                      "title": "The Get Schema",
+                      "required": [
+                        "description",
+                        "summary"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/operations/properties/get/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "gets my account"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "summary": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/operations/properties/get/properties/summary",
+                          "type": "string",
+                          "title": "The Summary Schema",
+                          "default": "",
+                          "examples": [
+                            "gets my account"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    },
+                    "update": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/operations/properties/update",
+                      "type": "object",
+                      "title": "The Update Schema",
+                      "required": [
+                        "description",
+                        "summary"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/operations/properties/update/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "updates my account"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "summary": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/operations/properties/update/properties/summary",
+                          "type": "string",
+                          "title": "The Summary Schema",
+                          "default": "",
+                          "examples": [
+                            "updates my account"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    }
+                  }
+                },
+                "properties": {
+                  "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties",
+                  "type": "object",
+                  "title": "The Properties Schema",
+                  "required": [
+                    "id",
+                    "username",
+                    "bio",
+                    "timestamp"
+                  ],
+                  "properties": {
+                    "id": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/id",
+                      "type": "object",
+                      "title": "The Id Schema",
+                      "required": [
+                        "description",
+                        "type",
+                        "required"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/id/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "the id the this account"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "type": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/id/properties/type",
+                          "type": "string",
+                          "title": "The Type Schema",
+                          "default": "",
+                          "examples": [
+                            "string"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "required": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/id/properties/required",
+                          "type": "boolean",
+                          "title": "The Required Schema",
+                          "default": false,
+                          "examples": [
+                            true
+                          ]
+                        }
+                      }
+                    },
+                    "username": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/username",
+                      "type": "object",
+                      "title": "The Username Schema",
+                      "required": [
+                        "description",
+                        "type",
+                        "required"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/username/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "the username to be showed"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "type": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/username/properties/type",
+                          "type": "string",
+                          "title": "The Type Schema",
+                          "default": "",
+                          "examples": [
+                            "string"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "required": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/username/properties/required",
+                          "type": "boolean",
+                          "title": "The Required Schema",
+                          "default": false,
+                          "examples": [
+                            true
+                          ]
+                        }
+                      }
+                    },
+                    "bio": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/bio",
+                      "type": "object",
+                      "title": "The Bio Schema",
+                      "required": [
+                        "description",
+                        "maxLength",
+                        "type",
+                        "required"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/bio/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "a short bio about me"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "maxLength": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/bio/properties/maxLength",
+                          "type": "integer",
+                          "title": "The Maxlength Schema",
+                          "default": 0,
+                          "examples": [
+                            140
+                          ]
+                        },
+                        "type": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/bio/properties/type",
+                          "type": "string",
+                          "title": "The Type Schema",
+                          "default": "",
+                          "examples": [
+                            "string"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "required": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/bio/properties/required",
+                          "type": "boolean",
+                          "title": "The Required Schema",
+                          "default": false,
+                          "examples": [
+                            true
+                          ]
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/timestamp",
+                      "type": "object",
+                      "title": "The Timestamp Schema",
+                      "required": [
+                        "description",
+                        "format",
+                        "type"
+                      ],
+                      "properties": {
+                        "description": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/timestamp/properties/description",
+                          "type": "string",
+                          "title": "The Description Schema",
+                          "default": "",
+                          "examples": [
+                            "when the account was updated"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "format": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/timestamp/properties/format",
+                          "type": "string",
+                          "title": "The Format Schema",
+                          "default": "",
+                          "examples": [
+                            "date-time"
+                          ],
+                          "pattern": "^(.*)$"
+                        },
+                        "type": {
+                          "$id": "#/properties/api-domain/properties/entities/properties/MyAccount/properties/properties/properties/timestamp/properties/type",
+                          "type": "string",
+                          "title": "The Type Schema",
+                          "default": "",
+                          "examples": [
+                            "string"
+                          ],
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "info": {
+          "$id": "#/properties/api-domain/properties/info",
+          "type": "object",
+          "title": "The Info Schema",
+          "required": [
+            "functionalDomain",
+            "description",
+            "x-audience",
+            "security",
+            "techInfo",
+            "version",
+            "contact"
+          ],
+          "properties": {
+            "functionalDomain": {
+              "$id": "#/properties/api-domain/properties/info/properties/functionalDomain",
+              "type": "string",
+              "title": "The Functionaldomain Schema",
+              "default": "",
+              "examples": [
+                "TODO list service"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "description": {
+              "$id": "#/properties/api-domain/properties/info/properties/description",
+              "type": "string",
+              "title": "The Description Schema",
+              "default": "",
+              "examples": [
+                "A description for the TODO list service"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "x-audience": {
+              "$id": "#/properties/api-domain/properties/info/properties/x-audience",
+              "type": "string",
+              "title": "The X-audience Schema",
+              "default": "",
+              "examples": [
+                "external-public"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "security": {
+              "$id": "#/properties/api-domain/properties/info/properties/security",
+              "type": "object",
+              "title": "The Security Schema",
+              "required": [
+                "oauth2",
+                "schemes"
+              ],
+              "properties": {
+                "oauth2": {
+                  "$id": "#/properties/api-domain/properties/info/properties/security/properties/oauth2",
+                  "type": "object",
+                  "title": "The Oauth2 Schema",
+                  "required": [
+                    "authorizationUrl",
+                    "flow"
+                  ],
+                  "properties": {
+                    "authorizationUrl": {
+                      "$id": "#/properties/api-domain/properties/info/properties/security/properties/oauth2/properties/authorizationUrl",
+                      "type": "string",
+                      "title": "The Authorizationurl Schema",
+                      "default": "",
+                      "examples": [
+                        "https://account.example.com/oauth2/token"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "flow": {
+                      "$id": "#/properties/api-domain/properties/info/properties/security/properties/oauth2/properties/flow",
+                      "type": "string",
+                      "title": "The Flow Schema",
+                      "default": "",
+                      "examples": [
+                        "PASSWORD"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                },
+                "schemes": {
+                  "$id": "#/properties/api-domain/properties/info/properties/security/properties/schemes",
+                  "type": "string",
+                  "title": "The Schemes Schema",
+                  "default": "",
+                  "examples": [
+                    "HTTPS"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            },
+            "techInfo": {
+              "$id": "#/properties/api-domain/properties/info/properties/techInfo",
+              "type": "object",
+              "title": "The Techinfo Schema",
+              "required": [
+                "basePath",
+                "consumes",
+                "host",
+                "produces"
+              ],
+              "properties": {
+                "basePath": {
+                  "$id": "#/properties/api-domain/properties/info/properties/techInfo/properties/basePath",
+                  "type": "string",
+                  "title": "The Basepath Schema",
+                  "default": "",
+                  "examples": [
+                    "/"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "consumes": {
+                  "$id": "#/properties/api-domain/properties/info/properties/techInfo/properties/consumes",
+                  "type": "string",
+                  "title": "The Consumes Schema",
+                  "default": "",
+                  "examples": [
+                    "JSON"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "host": {
+                  "$id": "#/properties/api-domain/properties/info/properties/techInfo/properties/host",
+                  "type": "string",
+                  "title": "The Host Schema",
+                  "default": "",
+                  "examples": [
+                    "https://api.example.com"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "produces": {
+                  "$id": "#/properties/api-domain/properties/info/properties/techInfo/properties/produces",
+                  "type": "string",
+                  "title": "The Produces Schema",
+                  "default": "",
+                  "examples": [
+                    "JSON"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            },
+            "version": {
+              "$id": "#/properties/api-domain/properties/info/properties/version",
+              "type": "string",
+              "title": "The Version Schema",
+              "default": "",
+              "examples": [
+                "1.0.0"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "contact": {
+              "$id": "#/properties/api-domain/properties/info/properties/contact",
+              "type": "object",
+              "title": "The Contact Schema",
+              "required": [
+                "name",
+                "url",
+                "email"
+              ],
+              "properties": {
+                "name": {
+                  "$id": "#/properties/api-domain/properties/info/properties/contact/properties/name",
+                  "type": "string",
+                  "title": "The Name Schema",
+                  "default": "",
+                  "examples": [
+                    "John Doe"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "url": {
+                  "$id": "#/properties/api-domain/properties/info/properties/contact/properties/url",
+                  "type": "string",
+                  "title": "The Url Schema",
+                  "default": "",
+                  "examples": [
+                    "https://developers.example.com/api/countries"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "email": {
+                  "$id": "#/properties/api-domain/properties/info/properties/contact/properties/email",
+                  "type": "string",
+                  "title": "The Email Schema",
+                  "default": "",
+                  "examples": [
+                    "John.Doe@example.com"
+                  ],
+                  "pattern": "^(.*)$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
