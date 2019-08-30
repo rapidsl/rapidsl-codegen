@@ -1,0 +1,45 @@
+{
+  "name": "rapidsl-codegen",
+  "version": "0.0.1",
+  "description": "Code generator from RAPIDSL to swagger, Open API, GraphQL, etc.",
+  "main": "index.js",
+  "bin": {
+    "rapidsl-codegen": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jantoniucci/rapidsl-codegen.git"
+  },
+  "keywords": [
+    "swagger",
+    "openapi",
+    "opendata",
+    "graphql",
+    "api",
+    "api-rest",
+    "api-restful"
+  ],
+  "author": "rapidsl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jantoniucci/rapidsl-codegen/issues"
+  },
+  "homepage": "https://github.com/jantoniucci/rapidsl-codegen#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "handlebars": "^4.1.2",
+    "js-yaml": "^3.13.1",
+    "yargs": "^13.2.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-standard": "^14.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}

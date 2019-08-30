@@ -1,0 +1,108 @@
+# RAPID ( REST API DSL )
+#
+# TL;DR : RAPID is intended to isolate RESTful API functional analysis from API design. 
+#
+# This idea cames from an experienced team of API Architects deploying API Governance processes at large and mid size orgs.
+# We promote de API first design approach but, in our experience, less skilled API designers loses a lot of time trying to 
+# success the Linter API controls and our manual inspections / supervisions. 
+# Once a swagger is released, we found also they are so-verbose to read and understand the meaning behind headers, 
+# parameters, verbs, etc.
+# Also, those rules can evolve across time and then we have to invest time into updating previous swagger definitions.
+# So we borrow some good ideas from RAML and also from good DSL like explained by @pavelpotapenkov 
+# and avoiding drawbacks explained in https://blog.atomist.com/in-defense-of-yaml/ (we are modeling data, not behaviour)
+#
+# This is a prototype to build a DSL (Domain Specific Language) to describe a RESTful API.
+# Then, this description could be translated into a Swagger v2, OpenAPI v3 or other IDL specification 
+# using opinionated design rules.
+#
+# WARNING : This is a Work in Progress but PLEASE let's contribute with your thoughts!
+#
+# UPDATES:
+#  - This example should generate a corresponding OpenAPI v3 file like this one at https://gist.github.com/jantoniucci/2b5507d68f7e58fc2a0bedae1de64ba2
+#  - A new example on nesting is available at https://gist.github.com/jantoniucci/7dbb9aafce89998c56ce23f480be3a2d
+#
+
+--- 
+rapid-spec: "0.1.0"
+api-domain: 
+  entities: 
+    TodoItem: 
+      operations: 
+        create: 
+          description: "create a todo item"
+          summary: "create a todo item"
+        get: 
+          description: "gets a todo item"
+          summary: "gets a todo item"
+        list: 
+          description: "lists the registered todo items"
+          plural-name: todoitems
+          summary: "lists the registered todo items"
+          traits: 
+            - isSearchable
+            - isPageable
+        update: 
+          description: "updates a todo item"
+          summary: "updates a todo item"
+      properties: ## usual json schema
+        id: 
+          description: "the id the this todo item"
+          type: string
+          required: true
+        done: 
+          description: "if the item has been finished"
+          type: boolean
+        text: 
+          description: "the content of the todo item"
+          maxLength: 140
+          type: string
+          required: true
+        timestamp: 
+          description: "when the item was created/updated"
+          format: date-time
+          type: string
+    MyAccount: 
+      operations: 
+        get: 
+          description: "gets my account"
+          summary: "gets my account"
+        update: 
+          description: "updates my account"
+          summary: "updates my account"
+      properties: ## usual json schema
+        id: 
+          description: "the id the this account"
+          type: string
+          required: true
+        username: 
+          description: "the username to be showed"
+          type: string
+          required: true
+        bio: 
+          description: "a short bio about me"
+          maxLength: 140
+          type: string
+          required: true
+        timestamp: 
+          description: "when the account was updated"
+          format: date-time
+          type: string
+  info: 
+    functionalDomain: "TODO list service"
+    description: "A description for the TODO list service"
+    x-audience: "external-public"
+    security: 
+      oauth2: 
+        authorizationUrl: "https://account.example.com/oauth2/token"
+        flow: PASSWORD
+      schemes: HTTPS
+    techInfo: 
+      basePath: /
+      consumes: JSON
+      host: "https://api.example.com"
+      produces: JSON
+    version: "1.0.0"
+    contact:
+      name: "John Doe"
+      url: "https://developers.example.com/api/countries"
+      email: "John.Doe@example.com"

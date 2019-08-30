@@ -1,0 +1,355 @@
+---
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: "TODO list service"
+  description: "A description for the TODO list service"
+  x-audience: "external-public"
+  x-api-id: d0184f38-b98d-11e7-9c56-68f728c1ba70
+  contact:
+    name: "John Doe"
+    url: "https://developers.example.com/api/countries"
+    email: "John.Doe@example.com"
+paths:
+  /todoitems:
+    get:
+      summary: "lists the registered todo items"
+      operationId: "gettodoitemsList"
+      security:
+        - oauth2:
+          - todoitem-service.read
+      parameters:
+        - name: q
+          in: query
+          description: the query object may contain the query filters applied to the collection resource
+          required: false
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: When listing, this is the starting row
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      x-zally-ignore: [151]
+      responses:
+        '200':
+          description: A paged array of TodoItem
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/TodoItems"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    post:
+      summary: "Creates a TodoItem"
+      operationId: "createTodoItem"
+      security:
+        - oauth2:
+          - todoitem-service.write
+      requestBody:
+          content: 
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/TodoItem"
+          description: the element object to be created
+          required: true
+      responses:
+        '201':
+          description: Ok. Element created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoItem"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+  /todoitems/{id}:
+    get:
+      summary: "Gets a TodoItem"
+      operationId: "getTodoItem"
+      security:
+        - oauth2:
+          - todoitem-service.read
+      parameters:
+        - name: id
+          in: path
+          description: the id of the required element
+          required: true
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: the query object may contain the query filters applied to the collection resource
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: When listing, this is the starting row
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          schema:
+            type: integer
+            format: int32
+      x-zally-ignore: [151]
+      responses:
+        '200':
+          description: Gets a TodoItem
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoItem"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    put:
+      summary: "Updates a TodoItem"
+      operationId: "updateTodoItem"
+      security:
+        - oauth2:
+          - todoitem-service.write
+      requestBody:
+          content: 
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/TodoItem"
+          description: the element object to be updated
+          required: true
+      parameters:
+        - name: id
+          in: path
+          description: the id of the required element
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ok. Element updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TodoItem"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+  /myaccount:
+    x-zally-ignore: [134]
+    get:
+      summary: "Gets a MyAccount"
+      operationId: "getMyAccount"
+      security:
+        - oauth2:
+          - myaccount-service.read
+      parameters:
+        - name: q
+          in: query
+          description: the query object may contain the query filters applied to the collection resource
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: When listing, this is the starting row
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          schema:
+            type: integer
+            format: int32
+      x-zally-ignore: [151]
+      responses:
+        '200':
+          description: Gets a MyAccount
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyAccount"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+    put:
+      summary: "Updates a MyAccount"
+      operationId: "updateMyAccount"
+      security:
+        - oauth2:
+          - myaccount-service.write
+      requestBody:
+          content: 
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/TodoItem"
+          description: the element object to be updated
+          required: true
+      responses:
+        '200':
+          description: Ok. Element updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MyAccount"
+        default:
+          description: unexpected error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+components:
+  schemas:
+    TodoItem:
+      type: object
+      required:
+        - id
+        - text
+      properties:
+        done:
+          description: if the item has been finished
+          type: boolean
+        id:
+          description: the id the this todo item
+          type: string
+        text:
+          description: the content of the todo item
+          maxLength: 140
+          type: string
+        timestamp:
+          description: when the item was created/updated
+          format: date-time
+          type: string
+    TodoItems:
+      type: object
+      properties:
+        self:
+          description: Pagination link pointing to the current page.
+          type: string
+          format: uri
+        first:
+          description: Pagination link pointing to the first page.
+          type: string
+          format: uri
+        prev:
+          description: Pagination link pointing to the previous page.
+          type: string
+          format: uri
+        next:
+          description: Pagination link pointing to the next page.
+          type: string
+          format: uri
+        last:
+          description: Pagination link pointing to the last page.
+          type: string
+          format: uri
+        query:
+          description: >
+            Object containing the query filters applied to the collection resource.
+          type: string
+        items:
+          description: Array of collection items.
+          type: array
+          items:
+            $ref: "#/components/schemas/TodoItem"
+    MyAccount:
+      type: object
+      required:
+        - id
+        - username
+        - bio
+      properties:
+        id:
+          description: the id the this account
+          type: string
+        username:
+          description: the username to be showed
+          type: string
+        bio:
+          description: a short bio about me
+          maxLength: 140
+          type: string
+        timestamp:
+          description: when the account was updated
+          format: date-time
+          type: string
+    Problem:
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: |
+            An absolute URI that identifies the problem type.  When dereferenced,
+            it SHOULD provide human-readable documentation for the problem type
+            (e.g., using HTML).
+          default: 'about:blank'
+          example: 'https://zalando.github.io/problem/constraint-violation'
+        title:
+          type: string
+          description: |
+            A short, summary of the problem type. Written in english and readable
+            for engineers (usually not suited for non technical stakeholders and
+            not localized); example: Service Unavailable
+        status:
+          type: integer
+          format: int32
+          description: |
+            The HTTP status code generated by the origin server for this occurrence
+            of the problem.
+          minimum: 100
+          maximum: 600
+          exclusiveMaximum: true
+          example: 503
+        detail:
+          type: string
+          description: |
+            A human readable explanation specific to this occurrence of the
+            problem.
+          example: Connection to database timed out
+        instance:
+          type: string
+          format: uri
+          description: |
+            An absolute URI that identifies the specific occurrence of the problem.
+            It may or may not yield further information if dereferenced.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://account.example.com/oauth2/token
+          scopes:
+            todoitem-service.read: Access right needed to read from the To-do list service.
+            todoitem-service.write: Access right needed to write to the To-do list service.            
+            myaccount-service.read: Access right needed to read from the To-do list service.
+            myaccount-service.write: Access right needed to write to the To-do list service.            
+servers:
+  - url: "https://api.example.com"
+    description: "Production server"
+    x-zally-ignore: [224]
